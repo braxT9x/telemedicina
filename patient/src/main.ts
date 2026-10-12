@@ -3,12 +3,14 @@ import localeFr from '@angular/common/locales/fr';
 import localeDe from '@angular/common/locales/de';
 import localeEs from '@angular/common/locales/es';
 import localeIt from '@angular/common/locales/it';
+import localePt from '@angular/common/locales/pt';
 import { bootstrapApplication } from '@angular/platform-browser';
 
 registerLocaleData(localeFr);
 registerLocaleData(localeDe);
 registerLocaleData(localeEs);
 registerLocaleData(localeIt);
+registerLocaleData(localePt);
 import { RouteReuseStrategy, provideRouter, withPreloading, PreloadAllModules, withComponentInputBinding } from '@angular/router';
 import { IonicRouteStrategy, provideIonicAngular } from '@ionic/angular/standalone';
 import { register } from 'swiper/element/bundle';
