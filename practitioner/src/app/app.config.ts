@@ -203,7 +203,7 @@ export const appConfig: ApplicationConfig = {
         useHttpBackend: true,
       }),
       fallbackLang: 'en',
-      lang: 'en',
+      lang: 'pt-br',
     }),
   ],
 };
