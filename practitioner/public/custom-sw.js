@@ -10,12 +10,12 @@ self.addEventListener('push', function (event) {
     payload = event.data.json();
   } catch (e) {
     payload = {
-      title: 'HCW@Home',
+      title: 'BRAXT',
       body: event.data.text(),
     };
   }
 
-  var title = payload.title || 'HCW@Home';
+  var title = payload.title || 'BRAXT';
   var options = {
     body: payload.body || '',
     icon: payload.icon || '/icons/icon-192x192.png',

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../core/services/auth.service';
 import { TranslationService } from '../../../core/services/translation.service';
 import { Subject, takeUntil } from 'rxjs';
+import { BRAND_NAME, BRAND_SHOW_NAME_ON_LOGIN } from '../../../core/brand';
 
 @Component({
   selector: 'app-auth-branding',
@@ -16,6 +17,8 @@ export class AuthBrandingComponent implements OnDestroy {
   private translationService = inject(TranslationService);
   private destroy$ = new Subject<void>();
 
+  readonly showBrandName = BRAND_SHOW_NAME_ON_LOGIN;
+  brandName = BRAND_NAME;
   siteLogoWhite: string | null = null;
   loginText: string | null = null;
   configError = false;
@@ -40,6 +43,7 @@ export class AuthBrandingComponent implements OnDestroy {
           return;
         }
         this.configError = false;
+        this.brandName = config.branding || BRAND_NAME;
         this.siteLogoWhite = config.main_organization?.logo_white || null;
         this.loginText = config.main_organization?.login_text_patient || null;
       },

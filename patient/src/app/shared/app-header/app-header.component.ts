@@ -13,6 +13,7 @@ import { Subject, takeUntil } from "rxjs";
 import { AuthService } from "../../core/services/auth.service";
 import { NotificationService } from "../../core/services/notification.service";
 import { User } from "../../core/models/user.model";
+import { BRAND_NAME } from "../../core/brand";
 
 @Component({
   selector: "app-header",
@@ -37,7 +38,7 @@ export class AppHeaderComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
 
   currentUser = signal<User | null>(null);
-  branding = signal<string>("HCW");
+  branding = signal<string>(BRAND_NAME);
   siteLogo = signal<string | null>(null);
   unreadNotificationCount = signal(0);
 

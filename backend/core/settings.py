@@ -21,11 +21,14 @@ from celery.schedules import crontab
 from django.core.exceptions import ImproperlyConfigured
 from django.templatetags.static import static
 from django.urls import reverse_lazy
+from django.utils.text import format_lazy
 from django.utils.translation import gettext_lazy as _
 from django.utils.translation import gettext_noop
 from dotenv import load_dotenv
 from firebase_admin import initialize_app
 from unfold.contrib.constance.settings import UNFOLD_CONSTANCE_ADDITIONAL_FIELDS
+
+from .brand import BRAND_NAME
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -395,7 +398,7 @@ SWAGGER_SETTINGS = {
 }
 
 SPECTACULAR_SETTINGS = {
-    "TITLE": "HCW@Home API",
+    "TITLE": f"{BRAND_NAME} API",
     "VERSION": "1.0.0",
     "SERVE_INCLUDE_SCHEMA": False,
     "SWAGGER_UI_DIST": "SIDECAR",
@@ -566,8 +569,8 @@ UNFOLD = {
     "SHOW_LANGUAGES": True,
     # Unfold dropped its django-modeltranslation tab styling in 0.104
     "STYLES": [lambda request: static("css/modeltranslation-tabs.css")],
-    "SITE_TITLE": _("HCW@Home Admin"),
-    "SITE_HEADER": _("HCW@Home Administration"),
+    "SITE_TITLE": format_lazy("{} – {}", BRAND_NAME, _("Admin")),
+    "SITE_HEADER": format_lazy("{} – {}", BRAND_NAME, _("Administration")),
     "SITE_URL": "/",
     "DASHBOARD_CALLBACK": "core.views.dashboard_callback",
     "SITE_ICON": {
@@ -905,7 +908,7 @@ UNFOLD = {
 # picked up by makemessages.
 CONSTANCE_CONFIG = {
     "site_name": (
-        "HCW@Home",
+        BRAND_NAME,
         gettext_noop("The name of the application displayed to users"),
     ),
     "patient_base_url": (

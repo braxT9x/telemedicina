@@ -22,6 +22,7 @@ import { CommonModule } from '@angular/common';
 import { Title } from '@angular/platform-browser';
 import { TranslationService } from '../../services/translation.service';
 import { ThemeService } from '../../services/theme.service';
+import { BRAND_NAME } from '../../brand';
 
 @Component({
   selector: 'app-sidebar',
@@ -49,7 +50,7 @@ export class Sidebar implements OnInit, OnDestroy {
   currentUser: IUser | null = null;
   isCollapsed = false;
   siteLogo: string | null = null;
-  branding = 'HCW';
+  branding = BRAND_NAME;
   @Output() collapsedChange = new EventEmitter<boolean>();
 
   ngOnInit(): void {

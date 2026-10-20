@@ -7,6 +7,7 @@ from django.views import View
 from django.utils.decorators import method_decorator
 from core.throttling import ratelimit
 from constance import config
+from django.conf import settings
 from consultations.models import Consultation, Appointment, Queue, Request
 from users.models import Organisation
 from django.db.models import Count, Q
@@ -54,7 +55,7 @@ class LoginSelectorView(View):
         context.update({
             "social_apps": social_apps,
             "next": "/admin/",
-            "site_title": _("HCW@Home Admin"),
+            "site_title": settings.UNFOLD["SITE_TITLE"],
             "title": _("Sign in"),
             "disable_password_login": config.disable_password_login,
         })
