@@ -3,6 +3,7 @@ from unittest.mock import patch
 from zoneinfo import ZoneInfo
 
 from constance.test import override_config
+from django.test import override_settings
 from django.urls import reverse
 from django.utils import timezone
 from django_tenants.test.cases import TenantTestCase
@@ -268,6 +269,13 @@ class ReminderApiTests(_ReminderBase):
 
 
 class ReminderTaskTests(_ReminderBase):
+    def setUp(self):
+        super().setUp()
+        # These tests assert the English copy; the platform default is pt-br.
+        # A class decorator would not apply: TenantTestCase.setUpClass is
+        # patched by core/test_runner.py.
+        self.enterContext(override_settings(LANGUAGE_CODE="en"))
+
     @patch("messaging.tasks.send_message.delay")
     def test_task_creates_message_and_deactivates(self, mock_send):
         now = timezone.now().replace(second=0, microsecond=0)
