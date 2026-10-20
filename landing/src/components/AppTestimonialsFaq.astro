@@ -1,0 +1,63 @@
+---
+import { Star, Apple, Play, Quote } from 'lucide-react';
+const testimonials = [
+  { q: 'Consegui atendimento de madrugada para meu filho com febre. Rápido e acolhedor.', n: 'Mariana S.', r: 'Paciente' },
+  { q: 'Saí da consulta com a receita no celular. Nunca foi tão simples.', n: 'Carlos M.', r: 'Paciente' },
+  { q: 'Faço terapia semanal pelo app e encaixo na minha rotina sem deslocamento.', n: 'Juliana P.', r: 'Paciente' },
+];
+const faqs = [
+  { q: 'A receita da teleconsulta é válida?', a: 'Sim. Receitas e atestados são emitidos com assinatura digital e podem ser apresentados em farmácias e empregadores.' },
+  { q: 'Preciso agendar o pronto atendimento?', a: 'Não. O pronto atendimento funciona 24h por ordem de chegada na fila virtual.' },
+  { q: 'Posso consultar pelo computador?', a: 'Sim, pelo navegador ou pelo app para Android e iOS.' },
+  { q: 'Quando devo procurar um pronto-socorro presencial?', a: 'Em casos de dor no peito, falta de ar intensa, desmaio, sangramentos ou outros sinais graves, procure atendimento presencial ou ligue 192.' },
+];
+---
+<section id="app" class="container-j py-16 md:py-20">
+  <div class="grid items-center gap-10 overflow-hidden rounded-[40px] bg-gradient-to-br from-jopi-blue to-jopi-blue-light p-8 text-white md:grid-cols-2 md:p-14">
+    <div>
+      <span class="badge bg-white/15 text-white"><Star size={14} fill="currentColor" class="text-jopi-yellow" /> 4.8 nas lojas</span>
+      <h2 class="mt-5 text-3xl font-bold !text-white md:text-5xl">Seu médico no bolso</h2>
+      <p class="mt-4 max-w-md font-body text-lg text-white/80">Consultas, documentos e histórico em um só lugar. Baixe o app da Jopi Saúde.</p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="#" class="inline-flex items-center gap-2 rounded-2xl bg-jopi-navy px-5 py-3 text-sm font-semibold"><Apple size={20} /> App Store</a>
+        <a href="#" class="inline-flex items-center gap-2 rounded-2xl bg-jopi-navy px-5 py-3 text-sm font-semibold"><Play size={20} /> Google Play</a>
+      </div>
+    </div>
+    <div class="mx-auto h-80 w-44 rounded-[36px] border-[6px] border-jopi-navy bg-white p-3 shadow-lift">
+      <div class="h-full rounded-[26px] bg-jopi-ice-2 p-3 text-jopi-navy">
+        <p class="text-[10px] text-jopi-muted">Olá, Maria</p>
+        <p class="font-display text-sm font-bold">Como podemos ajudar?</p>
+        <div class="mt-3 rounded-xl bg-jopi-blue p-3 text-[10px] text-white">Pronto Atendimento<br /><span class="font-mono">~7 min</span></div>
+        <div class="mt-2 rounded-xl bg-white p-3 text-[10px]">Especialistas</div>
+        <div class="mt-2 rounded-xl bg-white p-3 text-[10px]">Minhas receitas</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="container-j py-16 md:py-20">
+  <h2 class="text-center text-3xl font-bold md:text-5xl">Quem usa, recomenda</h2>
+  <div class="mt-12 grid gap-6 md:grid-cols-3">
+    {testimonials.map((t) => (
+      <figure class="card flex flex-col justify-between p-7">
+        <Quote size={28} class="text-jopi-cyan" />
+        <blockquote class="mt-4 font-body text-lg text-jopi-text">"{t.q}"</blockquote>
+        <figcaption class="mt-6 text-sm"><strong class="text-jopi-navy">{t.n}</strong> · <span class="text-jopi-muted">{t.r}</span></figcaption>
+      </figure>
+    ))}
+  </div>
+</section>
+
+<section id="faq" class="container-j max-w-3xl py-16 md:py-20">
+  <h2 class="text-center text-3xl font-bold md:text-4xl">Dúvidas frequentes</h2>
+  <div class="mt-10 space-y-3">
+    {faqs.map((f) => (
+      <details class="card group !rounded-2xl p-5 open:shadow-lift">
+        <summary class="flex cursor-pointer list-none items-center justify-between font-display font-semibold text-jopi-navy">
+          {f.q}<span class="text-jopi-blue transition group-open:rotate-45 text-2xl leading-none">+</span>
+        </summary>
+        <p class="mt-3 font-body text-jopi-text-2">{f.a}</p>
+      </details>
+    ))}
+  </div>
+</section>

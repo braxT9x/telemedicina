@@ -1,0 +1,56 @@
+---
+import HeroRotator from './HeroRotator';
+import { Video, Mic, PhoneOff, ShieldCheck, Clock, FileText, Star } from 'lucide-react';
+---
+<section class="relative overflow-hidden">
+  <div class="pointer-events-none absolute -top-40 right-0 h-[520px] w-[520px] rounded-full bg-jopi-cyan/15 blur-3xl"></div>
+  <div class="container-j grid items-center gap-12 py-16 md:grid-cols-2 md:py-24">
+    <div>
+      <span class="badge bg-jopi-green-soft text-jopi-green-dark">
+        <span class="h-2 w-2 animate-pulse rounded-full bg-jopi-green"></span> Médicos online agora
+      </span>
+      <h1 class="mt-5 text-4xl font-extrabold leading-[1.1] tracking-tight md:text-6xl">
+        Telemedicina que cuida de <HeroRotator client:load />
+      </h1>
+      <p class="mt-6 max-w-lg font-body text-lg leading-relaxed text-jopi-text-2">
+        Fale com um médico por vídeo em minutos, 24 horas por dia. Receitas, atestados e pedidos de exame digitais, válidos em todo o Brasil.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="#entrar" class="btn-primary">Consultar agora</a>
+        <a href="#como-funciona" class="btn-secondary">Como funciona</a>
+      </div>
+      <ul class="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-jopi-muted">
+        <li class="flex items-center gap-2"><ShieldCheck size={16} class="text-jopi-blue" /> Dados protegidos (LGPD)</li>
+        <li class="flex items-center gap-2"><FileText size={16} class="text-jopi-blue" /> Documentos com assinatura digital</li>
+      </ul>
+    </div>
+
+    <!-- Mockup de teleconsulta -->
+    <div class="relative mx-auto w-full max-w-md">
+      <div class="card overflow-hidden !rounded-[36px] p-3">
+        <div class="relative aspect-[4/5] overflow-hidden rounded-[28px] bg-gradient-to-br from-jopi-navy-3 to-jopi-blue">
+          <div class="absolute inset-0 flex flex-col items-center justify-center text-white">
+            <div class="flex h-28 w-28 items-center justify-center rounded-full bg-white/15 font-display text-4xl font-bold">DR</div>
+            <p class="mt-4 font-display text-lg font-semibold">Dra. Ana Ribeiro</p>
+            <p class="text-sm text-white/70">Clínica Geral · CRM 000000</p>
+          </div>
+          <div class="absolute right-4 top-4 h-24 w-20 rounded-2xl border-2 border-white/40 bg-jopi-navy/60"></div>
+          <div class="absolute left-4 top-4 badge bg-black/30 text-white"><span class="h-2 w-2 rounded-full bg-jopi-rose"></span> 12:47</div>
+          <div class="absolute inset-x-0 bottom-5 flex justify-center gap-3">
+            <span class="flex h-11 w-11 items-center justify-center rounded-full bg-white/20 text-white"><Mic size={18} /></span>
+            <span class="flex h-11 w-11 items-center justify-center rounded-full bg-white/20 text-white"><Video size={18} /></span>
+            <span class="flex h-11 w-11 items-center justify-center rounded-full bg-jopi-rose text-white"><PhoneOff size={18} /></span>
+          </div>
+        </div>
+      </div>
+      <div class="card absolute -left-6 top-10 hidden items-center gap-3 !rounded-2xl px-4 py-3 sm:flex">
+        <span class="flex h-9 w-9 items-center justify-center rounded-full bg-jopi-green-soft text-jopi-green-dark"><Clock size={18} /></span>
+        <div><p class="text-xs text-jopi-muted">Tempo de espera</p><p class="font-mono text-sm text-jopi-navy">~7 min</p></div>
+      </div>
+      <div class="card absolute -right-4 bottom-12 hidden items-center gap-3 !rounded-2xl px-4 py-3 sm:flex">
+        <span class="flex h-9 w-9 items-center justify-center rounded-full bg-jopi-yellow-soft text-jopi-yellow"><Star size={18} fill="currentColor" /></span>
+        <div><p class="text-xs text-jopi-muted">Avaliação no app</p><p class="font-mono text-sm text-jopi-navy">4.8 / 5</p></div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,133 @@
+@import "tailwindcss";
+
+/* Design tokens Jopi Saúde (Tailwind v4 — equivalente ao tailwind.config) */
+@theme {
+  /* Cores oficiais Jopi Saúde */
+  --color-ola-green: #00D37B;
+  --color-ola-green-hover: #007A4D;
+  --color-ola-green-soft: #EEFBF4;
+  --color-ola-purple: #5855EF;
+  --color-ola-purple-soft: #F0F2FE;
+  --color-ola-cyan: #00D1FF;
+  --color-ola-dark: #182230;
+  --color-ola-text: #28292B;
+  --color-ola-muted: #667085;
+  --color-ola-ice: #F4F6FC;
+
+  --color-jopi-brand: #00D37B;
+  --color-jopi-brand-light: #00BC6D;
+  --color-jopi-brand-dark: #007A4D;
+  --color-jopi-blue: #00D37B;
+  --color-jopi-blue-light: #00BC6D;
+  --color-jopi-cyan: #00D1FF;
+  --color-jopi-navy: #182230;
+  --color-jopi-navy-2: #111A24;
+  --color-jopi-navy-3: #0C131B;
+  --color-jopi-text: #28292B;
+  --color-jopi-text-2: #4B5563;
+  --color-jopi-muted: #667085;
+  --color-jopi-muted-2: #9CA3AF;
+  --color-jopi-ice: #F8FAF9;
+  --color-jopi-ice-2: #F4F6FC;
+  --color-jopi-line: #E5E9E7;
+  --color-jopi-purple: #5855EF;
+  --color-jopi-purple-soft: #F0F2FE;
+  --color-jopi-green: #00D37B;
+  --color-jopi-green-dark: #007A4D;
+  --color-jopi-green-soft: #EEFBF4;
+  --color-jopi-yellow: #FFB800;
+  --color-jopi-yellow-soft: #FFFBEB;
+  --color-jopi-rose: #EF4444;
+  --color-jopi-rose-soft: #FEF2F2;
+
+  --font-display: "Sora", sans-serif;
+  --font-sans: "Inter", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: ui-monospace, monospace;
+
+  --shadow-soft: 0 2px 4px rgba(3, 57, 82, 0.04), 0 10px 25px rgba(3, 57, 82, 0.07);
+  --shadow-lift: 0 4px 8px rgba(3, 57, 82, 0.05), 0 14px 34px rgba(3, 57, 82, 0.12);
+
+  --animate-marquee: marquee 40s linear infinite;
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+}
+
+/* Shimmer Button Keyframes & Animation Classes */
+@keyframes shimmer-slide {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(calc(100cqw - 100%), 0);
+  }
+}
+
+@keyframes spin-around {
+  0% {
+    transform: translateZ(0) rotate(0deg);
+  }
+  15%, 35% {
+    transform: translateZ(0) rotate(90deg);
+  }
+  65%, 85% {
+    transform: translateZ(0) rotate(270deg);
+  }
+  100% {
+    transform: translateZ(0) rotate(360deg);
+  }
+}
+
+@keyframes shimmer-sweep {
+  0% {
+    transform: translateX(-150%) skewX(-20deg);
+  }
+  100% {
+    transform: translateX(250%) skewX(-20deg);
+  }
+}
+
+.animate-shimmer-slide {
+  animation: shimmer-slide var(--speed, 3s) ease-in-out infinite alternate;
+}
+
+.animate-spin-around {
+  animation: spin-around calc(var(--speed, 3s) * 2) infinite linear;
+}
+
+.animate-shimmer-sweep {
+  animation: shimmer-sweep var(--speed, 2.5s) cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  @apply bg-jopi-ice font-sans text-jopi-text antialiased;
+}
+h1, h2, h3 { @apply font-display text-jopi-navy; }
+
+.container-j { @apply mx-auto w-full max-w-[1200px] px-5 md:px-8; }
+
+.btn-primary {
+  @apply inline-flex items-center justify-center gap-2 rounded-full bg-jopi-blue px-6 py-3 text-sm font-semibold text-white shadow-soft transition hover:bg-jopi-blue-light hover:shadow-lift focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-jopi-cyan;
+}
+.btn-secondary {
+  @apply inline-flex items-center justify-center gap-2 rounded-full border border-jopi-line bg-white px-6 py-3 text-sm font-semibold text-jopi-navy transition hover:border-jopi-blue hover:text-jopi-blue;
+}
+.badge {
+  @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold;
+}
+.card {
+  @apply rounded-3xl border border-jopi-line/80 bg-white shadow-soft;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-shimmer-slide,
+  .animate-spin-around,
+  .animate-shimmer-sweep {
+    animation: none !important;
+  }
+}

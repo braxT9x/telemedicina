@@ -1,0 +1,33 @@
+---
+import { Zap, CalendarCheck } from 'lucide-react';
+const specialties = [
+  'Clínica Geral', 'Pediatria', 'Psicologia', 'Psiquiatria', 'Dermatologia', 'Ginecologia',
+  'Cardiologia', 'Endocrinologia', 'Nutrição', 'Ortopedia', 'Neurologia', 'Urologia',
+  'Gastroenterologia', 'Otorrinolaringologia', 'Geriatria', 'Medicina da Família',
+];
+---
+<section id="como-funciona" class="container-j py-16 md:py-20">
+  <h2 class="mx-auto max-w-2xl text-center text-3xl font-bold md:text-5xl">Nunca mais espere meses para ser atendido</h2>
+  <div class="mt-12 grid gap-6 md:grid-cols-2">
+    <article class="card p-8 transition hover:shadow-lift">
+      <span class="badge bg-jopi-green-soft text-jopi-green-dark"><Zap size={14} /> 24h, sem agendamento</span>
+      <h3 class="mt-5 text-2xl font-bold">Pronto Atendimento Digital</h3>
+      <p class="mt-2 font-body text-jopi-text-2">Gripe, febre, dor de garganta, infecções e mais. Entre na fila e fale com um clínico geral.</p>
+      <p class="mt-6 font-mono text-4xl text-jopi-blue">em até 7 min</p>
+    </article>
+    <article class="card p-8 transition hover:shadow-lift">
+      <span class="badge bg-jopi-purple-soft text-jopi-purple"><CalendarCheck size={14} /> Agendado</span>
+      <h3 class="mt-5 text-2xl font-bold">Consultas com especialistas</h3>
+      <p class="mt-2 font-body text-jopi-text-2">Escolha a especialidade, o profissional e o horário que cabe na sua rotina.</p>
+      <p class="mt-6 font-mono text-4xl text-jopi-blue">de 2 a 5 dias</p>
+    </article>
+  </div>
+</section>
+
+<section id="especialidades" class="overflow-hidden py-6" aria-label="Especialidades disponíveis">
+  <div class="flex w-max animate-marquee gap-3 hover:[animation-play-state:paused]">
+    {[...specialties, ...specialties].map((s, i) => (
+      <span aria-hidden={i >= specialties.length} class="whitespace-nowrap rounded-full border border-jopi-line bg-white px-5 py-2.5 text-sm font-medium text-jopi-text shadow-soft">{s}</span>
+    ))}
+  </div>
+</section>

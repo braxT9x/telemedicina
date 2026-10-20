@@ -1,0 +1,28 @@
+---
+import '../styles/global.css';
+import '../styles/landing.css';
+interface Props { title?: string; description?: string }
+const {
+  title = 'Jopi Saúde | Telemedicina e Consultas Médicas Online',
+  description = 'Consultas médicas online do seu jeito. Atendimento imediato em até 7 minutos via chat ou consulta agendada com especialistas. Receitas e atestados na hora a partir de R$ 69.',
+} = Astro.props;
+---
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap"
+    />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

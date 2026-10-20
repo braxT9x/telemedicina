@@ -1,0 +1,27 @@
+---
+import { Smartphone, UserRound, Video, FileCheck2 } from 'lucide-react';
+const steps = [
+  { icon: Smartphone, title: 'Crie sua conta', text: 'Cadastro rápido pelo app ou pelo site.' },
+  { icon: UserRound, title: 'Escolha o atendimento', text: 'Pronto atendimento 24h ou especialista agendado.' },
+  { icon: Video, title: 'Consulte por vídeo', text: 'Chamada segura direto do celular ou computador.' },
+  { icon: FileCheck2, title: 'Receba seus documentos', text: 'Receitas, atestados e pedidos de exame no app.' },
+];
+---
+<section class="container-j py-16 md:py-20">
+  <div class="rounded-[40px] bg-jopi-navy px-6 py-14 text-white md:px-14">
+    <h2 class="text-3xl font-bold !text-white md:text-4xl">Como funciona</h2>
+    <p class="mt-3 max-w-xl font-body text-white/70">Do cadastro à receita em poucos minutos.</p>
+    <ol class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {steps.map((s, i) => (
+        <li class="rounded-3xl border border-white/10 bg-white/5 p-6">
+          <div class="flex items-center justify-between">
+            <span class="flex h-11 w-11 items-center justify-center rounded-2xl bg-jopi-cyan/15 text-jopi-cyan"><s.icon size={22} /></span>
+            <span class="font-mono text-sm text-white/40">0{i + 1}</span>
+          </div>
+          <h3 class="mt-5 text-lg font-semibold !text-white">{s.title}</h3>
+          <p class="mt-1 font-body text-sm text-white/70">{s.text}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
