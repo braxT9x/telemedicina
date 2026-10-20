@@ -2,10 +2,14 @@
 """Aplica a marca definida em branding/ em todo o projeto.
 
 Fonte única da marca:
-  branding/marca.json      nome, nomes curtos, cores do tema
-  branding/logo.svg        logo branco (tela de login, sobre fundo colorido)
-  branding/logo-color.svg  logo colorido (menu lateral, cabeçalho, admin)
-  branding/icone.png       ícone quadrado, mínimo 512x512 (favicon, PWA, atalhos)
+  branding/marca.json        nome, nomes curtos, cores do tema
+  branding/logo-branco.png   logo completo branco (tela de login, sobre fundo colorido)
+  branding/logo-azul.png     logo completo colorido (admin)
+  branding/marca-azul.png    símbolo colorido (menu lateral, cabeçalho, favicon, PWA)
+  branding/marca-branca.png  símbolo branco (reserva, para fundos escuros)
+
+Os logos podem ser PNG com fundo transparente ou SVG (mesmo nome, extensão
+.svg). Um PNG é embutido num SVG para manter os caminhos que o código usa.
 
 Uso, a partir da raiz do repositório:
   python3 branding/aplicar_marca.py
@@ -18,6 +22,7 @@ Em produção, nome, logos e favicon enviados no admin (Constance "site_name" e
 organização principal) continuam tendo prioridade sobre estes valores padrão.
 """
 
+import base64
 import json
 import re
 import shutil
@@ -36,6 +41,7 @@ def load_brand():
         if not brand.get(key):
             sys.exit(f"marca.json: campo obrigatório ausente: {key}")
     brand.setdefault("mostrar_nome_no_login", True)
+    brand.setdefault("cor_fundo_icone", "#ffffff")
     return brand
 
 
@@ -113,33 +119,82 @@ def update_static_files(brand):
     sub("docker-compose.yml", r"(TENANT_NAME: \$\{TENANT_NAME:-)[^}]*(\})", name)
 
 
+def find_source(stem):
+    for ext in (".svg", ".png"):
+        path = BRANDING / f"{stem}{ext}"
+        if path.exists():
+            return path
+    sys.exit(f"branding/{stem}.svg ou branding/{stem}.png não encontrado")
+
+
+def write_logo(source, dest):
+    dest = ROOT / dest
+    if source.suffix == ".svg":
+        shutil.copyfile(source, dest)
+        return
+    from PIL import Image
+
+    width, height = Image.open(source).size
+    data = base64.b64encode(source.read_bytes()).decode("ascii")
+    dest.write_text(
+        f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}" '
+        f'width="{width}" height="{height}">'
+        f'<image width="{width}" height="{height}" href="data:image/png;base64,{data}"/></svg>\n',
+        encoding="utf-8",
+    )
+
+
 def copy_logos():
     targets = {
-        "logo.svg": [
+        "logo-branco": [
             "patient/src/assets/images/logo.svg",
             "practitioner/public/images/logo.svg",
         ],
-        "logo-color.svg": [
+        "marca-azul": [
             "patient/src/assets/images/logo-color.svg",
             "practitioner/public/svg/logo.svg",
+        ],
+        "logo-azul": [
             "backend/users/static/users/img/logo-full.svg",
             "backend/statics/users/img/logo-full.svg",
         ],
     }
-    for source, dests in targets.items():
+    for stem, dests in targets.items():
+        source = find_source(stem)
         for dest in dests:
-            shutil.copyfile(BRANDING / source, ROOT / dest)
+            write_logo(source, dest)
 
 
-def generate_icons():
+def build_icon(brand):
+    """Símbolo centralizado num quadrado arredondado, base dos favicons e do PWA."""
+    from PIL import Image, ImageDraw
+
+    size = 1024
+    icon = Image.new("RGBA", (size, size), (0, 0, 0, 0))
+    ImageDraw.Draw(icon).rounded_rectangle(
+        [0, 0, size - 1, size - 1], radius=size // 5, fill=brand["cor_fundo_icone"]
+    )
+    mark = Image.open(find_source_png("marca-azul")).convert("RGBA")
+    box = int(size * 0.72)
+    mark.thumbnail((box, box), Image.LANCZOS)
+    icon.alpha_composite(mark, ((size - mark.width) // 2, (size - mark.height) // 2))
+    return icon
+
+
+def find_source_png(stem):
+    path = BRANDING / f"{stem}.png"
+    if not path.exists():
+        sys.exit(f"branding/{stem}.png é necessário para gerar os ícones")
+    return path
+
+
+def generate_icons(brand):
     try:
         from PIL import Image
     except ImportError:
         sys.exit("Pillow não instalado: pip install Pillow")
 
-    icon = Image.open(BRANDING / "icone.png").convert("RGBA")
-    if icon.width < 512 or icon.height < 512:
-        print("Aviso: icone.png menor que 512x512, os ícones grandes ficarão borrados.")
+    icon = build_icon(brand)
 
     def save(size, dest):
         icon.resize((size, size), Image.LANCZOS).save(ROOT / dest)
@@ -162,7 +217,7 @@ def main():
     write_constants(brand)
     update_static_files(brand)
     copy_logos()
-    generate_icons()
+    generate_icons(brand)
     print(f"Marca \"{brand['nome']}\" aplicada.")
 
 

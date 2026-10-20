@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- Logo provisório (versão branca, usada sobre fundo colorido na tela de login). Substitua pelo logo da empresa. -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
-  <circle cx="100" cy="100" r="88" fill="none" stroke="#ffffff" stroke-width="12"/>
-  <path d="M84 48h32v36h36v32h-36v36H84v-36H48V84h36z" fill="#ffffff"/>
-</svg>

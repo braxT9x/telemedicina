@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- Logo provisório (versão colorida, usada no menu lateral e no cabeçalho). Substitua pelo logo da empresa. -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
-  <circle cx="100" cy="100" r="88" fill="none" stroke="#0891b2" stroke-width="12"/>
-  <path d="M84 48h32v36h36v32h-36v36H84v-36H48V84h36z" fill="#0891b2"/>
-</svg>

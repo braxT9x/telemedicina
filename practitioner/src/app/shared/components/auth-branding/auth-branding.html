@@ -2,7 +2,9 @@
   <div class="left-content">
     @if (configError) {
       <img src="/images/logo.svg" alt="Logo" class="logo-img" />
-      <h1>{{ brandName }}</h1>
+      @if (showBrandName) {
+        <h1>{{ brandName }}</h1>
+      }
       <p class="error-text">{{ 'common.platformUnavailable' | translate }}</p>
     } @else {
       @if (siteLogoWhite) {
