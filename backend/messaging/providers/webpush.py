@@ -2,6 +2,7 @@ import json
 import logging
 from typing import TYPE_CHECKING
 
+from constance import config
 from django.conf import settings
 from pywebpush import WebPushException, webpush
 
@@ -35,7 +36,7 @@ class Main(BaseMessagingProvider):
 
         payload = json.dumps(
             {
-                "title": message.render_subject or "HCW@Home",
+                "title": message.render_subject or config.site_name,
                 "body": message.render_content or "",
                 "icon": "/assets/icons/icon-192x192.png",
                 "badge": "/assets/icons/icon-72x72.png",

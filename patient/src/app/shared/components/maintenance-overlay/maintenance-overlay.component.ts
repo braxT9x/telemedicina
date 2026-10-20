@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Subject, combineLatest, takeUntil } from 'rxjs';
 import { TranslatePipe } from '@ngx-translate/core';
 import { MaintenanceService } from '../../../core/services/maintenance.service';
+import { BRAND_NAME } from '../../../core/brand';
 
 @Component({
   selector: 'app-maintenance-overlay',
@@ -12,7 +13,7 @@ import { MaintenanceService } from '../../../core/services/maintenance.service';
     @if (maintenanceService.isMaintenance$ | async) {
       <div class="maintenance-overlay" role="alert" aria-live="assertive">
         <div class="maintenance-box">
-          <img src="assets/images/logo-color.svg" alt="HCW@Home" class="maintenance-logo" />
+          <img src="assets/images/logo-color.svg" [alt]="brandName" class="maintenance-logo" />
           <h1>{{ 'maintenance.title' | translate }}</h1>
           <p>
             {{ (maintenanceService.message$ | async) || ('maintenance.defaultMessage' | translate) }}
@@ -92,6 +93,7 @@ import { MaintenanceService } from '../../../core/services/maintenance.service';
 })
 export class MaintenanceOverlayComponent implements OnInit, OnDestroy {
   maintenanceService = inject(MaintenanceService);
+  readonly brandName = BRAND_NAME;
 
   countdown = 0;
   private destroy$ = new Subject<void>();

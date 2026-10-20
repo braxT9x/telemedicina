@@ -1,0 +1,8 @@
+{
+  "nome": "BRAXT",
+  "nome_curto": "BRAXT",
+  "nome_portal_medico": "BRAXT Médico",
+  "cor_tema_paciente": "#0e7490",
+  "cor_tema_medico": "#0891b2",
+  "mostrar_nome_no_login": true
+}

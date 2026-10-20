@@ -17,6 +17,7 @@ import { ToasterService } from '../../core/services/toaster.service';
 import { TranslationService } from '../../core/services/translation.service';
 import { ThemeService } from '../../core/services/theme.service';
 import { RoutePaths } from '../../core/constants/routes';
+import { BRAND_NAME } from '../../core/brand';
 import { IUserUpdateRequest } from '../../modules/user/models/user';
 import { CommunicationMethodEnum } from '../../modules/user/constants/user';
 import { SelectOption } from '../../shared/models/select';
@@ -64,7 +65,7 @@ export class OnboardingPage implements OnInit, OnDestroy {
   saving = signal(false);
 
   siteLogoWhite: string | null = null;
-  branding = 'HCW@Home';
+  branding = BRAND_NAME;
 
   requiresPassphrase = signal(false);
   newPassphraseForUser = signal<string | null>(null);

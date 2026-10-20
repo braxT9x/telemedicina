@@ -128,7 +128,7 @@ services:
       <<: *backend-env
       # Tenant and public URLs
       TENANT_SCHEMA: ${TENANT_SCHEMA:-default}
-      TENANT_NAME: ${TENANT_NAME:-HCW@Home}
+      TENANT_NAME: ${TENANT_NAME:-BRAXT}
       TENANT_PRIMARY_DOMAIN: ${TENANT_PRIMARY_DOMAIN:-localhost}
       TENANT_PATIENT_DOMAIN: ${TENANT_PATIENT_DOMAIN:-}
       TENANT_ADMIN_DOMAIN: ${TENANT_ADMIN_DOMAIN:-}

@@ -68,7 +68,7 @@ class Main(BaseMessagingProvider):
             message.pk, message.email, from_email,
         )
 
-        subject = message.render_subject or "Message from HCW"
+        subject = message.render_subject or config.site_name
         logger.debug("Subject: %s", subject)
 
         body = message.render_content

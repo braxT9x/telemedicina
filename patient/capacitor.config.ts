@@ -2,7 +2,7 @@ import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'com.healthcare.patient',
-  appName: 'HCW@Home',
+  appName: 'BRAXT',
   webDir: 'www',
   server: {
     androidScheme: 'https',
