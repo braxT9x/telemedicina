@@ -113,5 +113,5 @@ Les migrations sont appliquees automatiquement au redemarrage du service `hcw`.
 
 ```bash
 cd /usr/share/hcw/backend
-sudo -u hcw venv/bin/python manage.py loaddata initial/TestData.json
+sudo -u hcw venv/bin/python manage.py seed_demo --schema <tenant_schema>
 ```

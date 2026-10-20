@@ -109,10 +109,10 @@ docker compose exec api python3 manage.py tenant_command createsuperuser -s loca
 ### 5. Charger les donnees de test (optionnel)
 
 ```bash
-docker compose exec api python manage.py loaddata initial/TestData.json
+docker compose exec api python manage.py seed_demo --schema <tenant_schema>
 ```
 
-Cela cree des utilisateurs de test (mot de passe : `Test1234`). Voir le [README](https://github.com/HCW-home/hcw-home) pour la liste complete.
+Cela cree des utilisateurs de demonstration fictifs (mot de passe : `Demo@2026`). Voir [ROTEIRO_DEMO.md](https://github.com/braxT9x/telemedicina/blob/master/docs/ROTEIRO_DEMO.md) pour la liste complete.
 
 ## Services et ports
 

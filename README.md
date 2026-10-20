@@ -135,33 +135,22 @@ python3 manage.py makemessages --locale=it --ignore='venv/*'
 
 ### Test data
 
-A fixture file is provided to quickly populate the database with realistic test data:
+A management command populates a tenant with fictitious Brazilian demo data
+(practitioners, patients, consultations, appointments, chat messages and
+prescriptions, all in Portuguese):
 
 ```bash
 cd backend
-python3 manage.py loaddata initial/TestData.json
+python3 manage.py seed_demo --schema <tenant_schema>
 ```
 
-This creates:
-- 1 organisation (Hôpital Universitaire de Genève)
-- 4 practitioners (1 admin, 1 generalist, 1 cardiologist, 1 dermatologist)
-- 5 patients (including 1 anonymous/temporary)
-- 3 queues (Médecine générale, Cardiologie, Dermatologie)
-- 8 consultations with various statuses (open, closed, with/without beneficiary)
-- 9 appointments (future, past, cancelled, online and in-person)
+Dates are computed from the moment the command runs, and re-running it
+refreshes them without duplicating anything. `--remove` deletes all demo
+data. Every account uses the reserved `demo.example.com` domain and the
+password `Demo@2026` (override with `--password` or `DEMO_PASSWORD`).
 
-All users share the same password: `Test1234`
-
-| Role | Email |
-|------|-------|
-| Admin | admin@example.com |
-| Practitioner | dr.martin@example.com |
-| Practitioner | dr.bernard@example.com |
-| Practitioner | dr.duval@example.com |
-| Patient | jean.dupont@example.com |
-| Patient | marie.leclerc@example.com |
-| Patient | ahmed.benali@example.com |
-| Patient | laura.rossi@example.com |
+The account list and the presentation script are in
+[docs/ROTEIRO_DEMO.md](docs/ROTEIRO_DEMO.md).
 
 ### Installation
 
