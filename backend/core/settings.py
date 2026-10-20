@@ -51,7 +51,7 @@ DEBUG = True if os.getenv("DEBUG") == "True" else False
 MAINTENANCE = os.getenv("MAINTENANCE", "False") == "True"
 MAINTENANCE_MESSAGE = os.getenv(
     "MAINTENANCE_MESSAGE",
-    "The service is temporarily unavailable for maintenance. Please try again later.",
+    "O serviço está temporariamente indisponível para manutenção. Tente novamente mais tarde.",
 )
 MAINTENANCE_RETRY_AFTER = int(os.getenv("MAINTENANCE_RETRY_AFTER", 300))
 
@@ -248,7 +248,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "pt-br"
 
 LOCALE_PATHS = [
     BASE_DIR / "locale",
@@ -262,7 +262,9 @@ USE_TZ = True
 
 gettext = lambda s: s
 LANGUAGES = (
+    # English stays first: it is modeltranslation's default (fallback) language.
     ("en", gettext("English")),
+    ("pt-br", gettext("Brazilian Portuguese")),
     ("ar", gettext("Arabic")),
     ("de", gettext("German")),
     ("es", gettext("Spanish")),

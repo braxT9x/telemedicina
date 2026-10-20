@@ -3,7 +3,7 @@
     @if (configError) {
       <img src="/images/logo.svg" alt="Logo" class="logo-img" />
       <h1>HCW@Home</h1>
-      <p class="error-text">The platform is temporarily unavailable. Please try again later.</p>
+      <p class="error-text">{{ 'common.platformUnavailable' | translate }}</p>
     } @else {
       @if (siteLogoWhite) {
         <img [src]="siteLogoWhite" alt="Logo" class="logo-img" />

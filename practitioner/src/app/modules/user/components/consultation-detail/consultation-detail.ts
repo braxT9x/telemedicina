@@ -1936,6 +1936,7 @@ export class ConsultationDetail implements OnInit, OnDestroy {
 
   getLanguageLabel(code: string): string {
     const languages: Record<string, string> = {
+      'pt-br': this.t.instant('consultationDetail.languagePortuguese'),
       en: this.t.instant('consultationDetail.languageEnglish'),
       de: this.t.instant('consultationDetail.languageGerman'),
       fr: this.t.instant('consultationDetail.languageFrench'),

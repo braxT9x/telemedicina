@@ -1,5 +1,6 @@
 import { Component, OnDestroy, effect, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslatePipe } from '@ngx-translate/core';
 import { Auth } from '../../../core/services/auth';
 import { ThemeService } from '../../../core/services/theme.service';
 import { TranslationService } from '../../../core/services/translation.service';
@@ -8,7 +9,7 @@ import { Subject, takeUntil } from 'rxjs';
 @Component({
   selector: 'app-auth-branding',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslatePipe],
   templateUrl: './auth-branding.html',
   styleUrl: './auth-branding.scss',
 })

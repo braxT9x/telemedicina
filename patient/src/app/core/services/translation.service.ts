@@ -11,17 +11,21 @@ export interface AppLanguage {
 }
 
 const DEFAULT_FALLBACK: AppLanguage[] = [
+  { code: 'pt-br', name: 'Portuguese (Brazil)', nativeName: 'Português (Brasil)' },
   { code: 'en', name: 'English', nativeName: 'English' },
 ];
 
 const STORAGE_KEY = 'app_language';
-const DEFAULT_LANGUAGE = 'en';
+const DEFAULT_LANGUAGE = 'pt-br';
+/* Used for keys missing from the active language file. */
+const FALLBACK_LANGUAGE = 'en';
 
 /* Languages written right-to-left. Ionic mirrors its own components off the
  * documentElement dir, so setting the attribute is all that is needed here. */
 const RTL_LANGUAGES = ['ar', 'he', 'fa', 'ur'];
 
 const NATIVE_NAMES: Record<string, string> = {
+  'pt-br': 'Português (Brasil)',
   en: 'English',
   fr: 'Français',
   de: 'Deutsch',
@@ -59,17 +63,12 @@ export class TranslationService {
 
   private initializeLanguage(): void {
     this.translate.addLangs(this.availableLanguagesSignal().map(lang => lang.code));
-    this.translate.setDefaultLang(DEFAULT_LANGUAGE);
+    this.translate.setDefaultLang(FALLBACK_LANGUAGE);
 
+    // Brazilian Portuguese is the default; the browser language is ignored so
+    // the interface only changes when the user picks another language.
     const savedLanguage = localStorage.getItem(STORAGE_KEY);
-    const browserLang = this.translate.getBrowserLang();
-    const langs = this.availableLanguagesSignal();
-    const langToUse = savedLanguage ||
-      (browserLang && langs.some(l => l.code === browserLang)
-        ? browserLang
-        : DEFAULT_LANGUAGE);
-
-    this.setLanguage(langToUse);
+    this.setLanguage(savedLanguage || DEFAULT_LANGUAGE);
   }
 
   loadLanguages(languages: { code: string; name: string }[]): void {
@@ -81,18 +80,6 @@ export class TranslationService {
       }));
       this.availableLanguagesSignal.set(mapped);
       this.translate.addLangs(mapped.map(l => l.code));
-
-      // Re-initialize language selection with the new available languages
-      const savedLanguage = localStorage.getItem(STORAGE_KEY);
-      if (!savedLanguage) {
-        const browserLang = this.translate.getBrowserLang();
-        const langToUse = browserLang && mapped.some(l => l.code === browserLang)
-          ? browserLang
-          : this.currentLanguageSignal();
-        if (langToUse !== this.currentLanguageSignal()) {
-          this.setLanguage(langToUse);
-        }
-      }
     }
   }
 
