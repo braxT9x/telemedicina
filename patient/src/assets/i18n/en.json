@@ -32,7 +32,8 @@
     "language": "Language",
     "skipToContent": "Skip to main content",
     "previous": "Previous",
-    "next": "Next"
+    "next": "Next",
+    "platformUnavailable": "The platform is temporarily unavailable. Please try again later."
   },
   "login": {
     "title": "Sign In",

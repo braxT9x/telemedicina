@@ -55,7 +55,7 @@ interface InviteOption {
 import { TIMEZONE_OPTIONS } from '../../constants/timezone';
 
 /** Languages a temporary contact can be invited in. */
-const GUEST_LANGUAGES = ['fr', 'en', 'de'] as const;
+const GUEST_LANGUAGES = ['pt-br', 'en', 'fr', 'de'] as const;
 
 /** Feeds unique input ids so the label can be associated with the field. */
 let nextPickerId = 0;
@@ -65,10 +65,10 @@ let nextPickerId = 0;
  * when a number is typed without one. Purely an example: with no
  * `default_phone_region` the real country cannot be inferred from the digits.
  */
-const EXAMPLE_COUNTRY_CODE = '+33';
+const EXAMPLE_COUNTRY_CODE = '+55';
 
 /** Stand-in national number, used when too little has been typed to echo. */
-const EXAMPLE_NATIONAL_NUMBER = '612345678';
+const EXAMPLE_NATIONAL_NUMBER = '11912345678';
 
 /** Keep in sync with the .dropdown max-height in the stylesheet. */
 const DROPDOWN_MAX_HEIGHT = 320;
@@ -956,7 +956,7 @@ export class ContactPicker
         language
       )
         ? language
-        : 'en',
+        : 'pt-br',
       timezone:
         this.meUser?.timezone ||
         Intl.DateTimeFormat().resolvedOptions().timeZone ||

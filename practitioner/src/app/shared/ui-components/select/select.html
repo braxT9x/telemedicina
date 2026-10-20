@@ -61,7 +61,9 @@
         [disabled]="disabled"
         [value]="searchInputValue()"
         [placeholder]="
-          multiSelect() && selectedValues.length ? '' : placeholder()
+          multiSelect() && selectedValues.length
+            ? ''
+            : placeholder() || ('common.selectPlaceholder' | translate)
         "
         (input)="onSearchInput($event)"
         (click)="$event.stopPropagation(); openDropdown()" />
@@ -181,7 +183,7 @@
               <app-typography
                 [variant]="TypographyTypeEnum['body-s-regular']"
                 color="var(--slate-400)">
-                No results
+                {{ 'common.noResults' | translate }}
               </app-typography>
             </li>
           }

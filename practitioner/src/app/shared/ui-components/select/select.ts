@@ -22,6 +22,7 @@ import { Typography } from '../typography/typography';
 import { TypographyTypeEnum } from '../../constants/typography';
 import { ErrorMessage } from '../../components/error-message/error-message';
 import { Loader } from '../../components/loader/loader';
+import { TranslatePipe } from '@ngx-translate/core';
 
 export interface AsyncSearchResult {
   results: SelectOption[];
@@ -35,7 +36,7 @@ export type AsyncSearchFn = (
 
 @Component({
   selector: 'app-select',
-  imports: [CommonModule, Svg, Typography, ErrorMessage, Loader],
+  imports: [CommonModule, Svg, Typography, ErrorMessage, Loader, TranslatePipe],
   templateUrl: './select.html',
   styleUrl: './select.scss',
   providers: [
@@ -51,7 +52,7 @@ export class Select implements ControlValueAccessor, OnChanges, OnInit, OnDestro
   name = input<string>();
   required = input<boolean>(false);
   options = input<SelectOption[]>([]);
-  placeholder = input('Select…');
+  placeholder = input('');
   multiSelect = input(false);
   searchable = input(true);
   invalid = input<boolean>(false);

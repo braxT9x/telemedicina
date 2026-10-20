@@ -35,7 +35,11 @@
     "hideDetails": "Hide details",
     "showDetails": "Show details",
     "offlineMode": "Offline mode",
-    "offlineModeDescription": "Some features are limited. Cached data is available."
+    "offlineModeDescription": "Some features are limited. Cached data is available.",
+    "selectPlaceholder": "Select…",
+    "noResults": "No results",
+    "requiredField": "Required field",
+    "platformUnavailable": "The platform is temporarily unavailable. Please try again later."
   },
   "openIdCallback": {
     "authenticating": "Authenticating...",
@@ -691,7 +695,8 @@
     "noAppointments": "No scheduled appointments",
     "someAppointmentsNotCreated": "Some appointments could not be created",
     "encryptionWarningTitle": "Encryption warning",
-    "encryptionWarningMessage": "The follow-up was created but could not be encrypted. Check your encryption setup."
+    "encryptionWarningMessage": "The follow-up was created but could not be encrypted. Check your encryption setup.",
+    "portuguese": "Portuguese (Brazil)"
   },
   "createConsultationModal": {
     "title": "New Follow-up",
@@ -845,7 +850,8 @@
     "followUpTitle": "Follow-up title",
     "descriptionHint": "Optional · visible to the patient",
     "visibleByPatientHint": "The patient can read this follow-up and send messages in it.",
-    "permissionsSection": "Permissions and access"
+    "permissionsSection": "Permissions and access",
+    "languagePortuguese": "Portuguese (Brazil)"
   },
   "appointmentFormModal": {
     "editAppointment": "Edit Appointment",
@@ -1365,6 +1371,7 @@
     "deliveryWhatsApp": "link by WhatsApp",
     "deliveryManual": "nothing sent",
     "language": {
+      "pt-br": "Portuguese (Brazil)",
       "fr": "French",
       "en": "English",
       "de": "German"

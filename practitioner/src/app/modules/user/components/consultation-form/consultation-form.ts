@@ -156,6 +156,7 @@ export class ConsultationForm implements OnInit, OnDestroy {
 
   get languageOptions(): SelectOption[] {
     return [
+      { value: 'pt-br', label: this.t.instant('consultationForm.portuguese') },
       { value: 'en', label: this.t.instant('consultationForm.english') },
       { value: 'fr', label: this.t.instant('consultationForm.french') },
       { value: 'es', label: this.t.instant('consultationForm.spanish') },
