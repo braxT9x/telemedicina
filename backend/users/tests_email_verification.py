@@ -11,6 +11,7 @@ from datetime import timedelta
 
 from constance.test import override_config
 from django.core.cache import cache
+from django.test import override_settings
 from django.utils import timezone
 from django_tenants.test.cases import TenantTestCase
 from rest_framework.test import APIClient
@@ -188,6 +189,8 @@ class SignUpTests(TenantTestCase):
 class AccountVerifyTests(TenantTestCase):
     def setUp(self):
         super().setUp()
+        # These tests assert the English copy; the platform default is pt-br.
+        self.enterContext(override_settings(LANGUAGE_CODE="en"))
         cache.clear()
         self.client = APIClient()
 
