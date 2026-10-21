@@ -64,7 +64,8 @@ const Navbar1 = ({
     window.addEventListener("keydown", onKey)
     return () => {
       window.removeEventListener("keydown", onKey)
-      trigger?.focus()
+      // Se o menu fechou porque abriu outro diálogo (a triagem), o foco fica com ele
+      if (!document.querySelector('[role="dialog"]:not([data-mobile-menu])')) trigger?.focus()
     }
   }, [isOpen])
 
@@ -193,7 +194,8 @@ const Navbar1 = ({
         {isOpen && (
           <motion.div
             ref={menuRef}
-            className="fixed inset-0 z-50 bg-white/95 px-6 pt-24 backdrop-blur-3xl backdrop-saturate-200 lg:hidden text-slate-900"
+            data-mobile-menu
+            className="fixed inset-0 z-50 overflow-y-auto bg-white/95 px-6 pt-24 pb-10 backdrop-blur-3xl backdrop-saturate-200 lg:hidden text-slate-900"
             role="dialog"
             aria-modal="true"
             initial={{ opacity: 0, x: "100%" }}
