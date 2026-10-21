@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { motion, AnimatePresence } from "motion/react"
 import { Menu, X } from "lucide-react"
 
@@ -37,13 +37,35 @@ const Navbar1 = ({
 }: Navbar1Props) => {
   const [isOpen, setIsOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const menuRef = useRef<HTMLDivElement>(null)
   const toggleMenu = () => setIsOpen((v) => !v)
 
+  // Com o menu aberto: trava a rolagem, mantém o Tab dentro dele e devolve o
+  // foco ao botão que o abriu ao fechar
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : ""
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setIsOpen(false)
+    if (!isOpen) return
+    const trigger = document.activeElement as HTMLElement | null
+    menuRef.current?.querySelector<HTMLElement>("button, a")?.focus()
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") return setIsOpen(false)
+      if (e.key !== "Tab" || !menuRef.current) return
+      const focusable = menuRef.current.querySelectorAll<HTMLElement>("button, a")
+      const first = focusable[0]
+      const last = focusable[focusable.length - 1]
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault()
+        last.focus()
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault()
+        first.focus()
+      }
+    }
     window.addEventListener("keydown", onKey)
-    return () => window.removeEventListener("keydown", onKey)
+    return () => {
+      window.removeEventListener("keydown", onKey)
+      trigger?.focus()
+    }
   }, [isOpen])
 
   // O menu móvel some no layout de desktop: fecha junto para não travar a rolagem
@@ -170,6 +192,7 @@ const Navbar1 = ({
       <AnimatePresence>
         {isOpen && (
           <motion.div
+            ref={menuRef}
             className="fixed inset-0 z-50 bg-white/95 px-6 pt-24 backdrop-blur-3xl backdrop-saturate-200 lg:hidden text-slate-900"
             role="dialog"
             aria-modal="true"

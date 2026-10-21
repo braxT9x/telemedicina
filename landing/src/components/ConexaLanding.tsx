@@ -522,7 +522,7 @@ export default function ConexaLanding() {
       <section className="py-16 bg-white border-y border-[#E5E9E7] text-[#182230]">
         <div className="container-j grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           <div>
-            <p className="font-mono text-4xl md:text-5xl font-black text-[#00874E]">+2.000.000</p>
+            <p className="font-mono text-2xl sm:text-4xl md:text-5xl font-black text-[#00874E]">+2.000.000</p>
             <p className="mt-2 text-xs md:text-sm text-[#667085]">Consultas realizadas</p>
           </div>
           <div>
