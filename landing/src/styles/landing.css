@@ -104,7 +104,8 @@ h1, h2, h3, h4 {
 .benefit-card:hover img { transform: scale(1.035); }
 .benefit-card::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(7,27,44,.08) 18%, rgba(7,27,44,.16) 46%, rgba(6,23,40,.82) 100%); }
 .benefit-tag { position: absolute; z-index: 1; top: 15px; left: 15px; border: 1px solid rgba(255,255,255,.8); background: rgba(21,39,55,.23); border-radius: 100px; padding: 6px 11px; font-size: 9px; line-height: 1; }
-.benefit-card h3 { position: absolute; z-index: 1; left: 18px; right: 16px; bottom: 17px; margin: 0; font-size: clamp(16px, 1.5vw, 20px); font-weight: 460; line-height: 1.33; letter-spacing: -.025em; color: white; }
+.benefit-card > div { position: absolute; z-index: 1; left: 18px; right: 16px; bottom: 17px; }
+.benefit-card h3 { margin: 0; font-size: clamp(16px, 1.5vw, 20px); font-weight: 460; line-height: 1.33; letter-spacing: -.025em; color: white; }
 
 .business-section { background: var(--ice-deep); padding: 34px 0 44px; }
 .business-wrap { width: min(1120px, calc(100% - 44px)); margin: auto; }

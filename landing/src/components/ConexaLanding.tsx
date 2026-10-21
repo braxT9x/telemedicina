@@ -27,6 +27,7 @@ const featuredDoctors = [
     role: 'Clínica Geral • CRM/SP 198.412',
     image: 'benefit-protocol.jpg',
     specialty: 'Atendimento Imediato & Check-up',
+    bookingSpecialty: 'Clínico Geral',
     waitingTime: 'Plantão agora (~4 min)',
   },
   {
@@ -34,6 +35,7 @@ const featuredDoctors = [
     role: 'Cardiologia & Clínica • CRM/SP 204.119',
     image: 'benefit-specialties.jpg',
     specialty: 'Saúde Cardiovascular & Hipertensão',
+    bookingSpecialty: 'Cardiologia',
     waitingTime: 'Agendamento disponível hoje',
   },
   {
@@ -41,6 +43,7 @@ const featuredDoctors = [
     role: 'Psicologia Clínica • CRP 06/142.890',
     image: 'benefit-psychology.jpg',
     specialty: 'Ansiedade, Estresse e Burnout',
+    bookingSpecialty: 'Psicologia',
     waitingTime: 'Sessões online de 50 min',
   },
 ];
@@ -386,7 +389,7 @@ export default function ConexaLanding() {
                   </span>
                   <button
                     type="button"
-                    onClick={() => openTriage('agendada', doc.specialty)}
+                    onClick={() => openTriage('agendada', doc.bookingSpecialty)}
                     className="mt-3 w-full rounded-full bg-[#00D37B]/15 border border-[#00D37B]/40 py-2.5 text-xs font-bold text-[#007A4D] transition hover:bg-[#00D37B] hover:text-[#052E16] cursor-pointer"
                   >
                     Agendar nesta especialidade

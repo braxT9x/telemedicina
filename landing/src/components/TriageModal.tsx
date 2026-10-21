@@ -16,10 +16,10 @@ const PATIENT_URL = import.meta.env.PUBLIC_PATIENT_URL || "http://localhost:8081
 // Especialidades cadastradas no sistema. A landing usa nomes de marketing;
 // as que não estão aqui seguem com o próprio nome para a busca do portal.
 const SYSTEM_SPECIALTIES: [RegExp, string][] = [
-  [/cl[ií]nic|check-up|imediato/, "Clínica Médica"],
-  [/cardio|hipertens/, "Cardiologia"],
-  [/derma|pele/, "Dermatologia"],
-  [/psiq|ansiedade|estresse|burnout/, "Psiquiatria"],
+  [/cl[ií]nic/, "Clínica Médica"],
+  [/cardio/, "Cardiologia"],
+  [/derma/, "Dermatologia"],
+  [/psiq/, "Psiquiatria"],
 ];
 
 function toSystemSpecialty(specialty: string): string {
@@ -38,12 +38,10 @@ export function TriageModal({
 
   const modalRef = useRef<HTMLDivElement>(null);
 
+  // O modal fica montado: a cada abertura o tipo volta a ser o do botão clicado
   useEffect(() => {
-    if (initialType) setConsultationType(initialType);
-    if (initialSpecialty) {
-      setConsultationType("agendada");
-    }
-  }, [initialType, initialSpecialty]);
+    if (isOpen) setConsultationType(initialSpecialty ? "agendada" : initialType);
+  }, [isOpen, initialType, initialSpecialty]);
 
   useEffect(() => {
     if (!isOpen) {
@@ -56,13 +54,8 @@ export function TriageModal({
   useEffect(() => {
     if (!isOpen) return;
     const trigger = document.activeElement as HTMLElement | null;
-    const frame = requestAnimationFrame(() => {
-      modalRef.current?.querySelector<HTMLElement>("button:not([disabled])")?.focus();
-    });
-    return () => {
-      cancelAnimationFrame(frame);
-      trigger?.focus();
-    };
+    modalRef.current?.querySelector<HTMLElement>("button:not([disabled])")?.focus();
+    return () => trigger?.focus();
   }, [isOpen]);
 
 
