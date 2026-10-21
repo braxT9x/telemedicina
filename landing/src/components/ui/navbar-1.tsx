@@ -46,6 +46,14 @@ const Navbar1 = ({
     return () => window.removeEventListener("keydown", onKey)
   }, [isOpen])
 
+  // O menu móvel some no layout de desktop: fecha junto para não travar a rolagem
+  useEffect(() => {
+    const desktop = window.matchMedia("(min-width: 1024px)")
+    const onChange = (e: MediaQueryListEvent) => e.matches && setIsOpen(false)
+    desktop.addEventListener("change", onChange)
+    return () => desktop.removeEventListener("change", onChange)
+  }, [])
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 25)
@@ -102,7 +110,7 @@ const Navbar1 = ({
         </motion.a>
 
         {/* Navegação Desktop com pills suaves */}
-        <nav className="relative hidden items-center gap-1 lg:gap-1.5 md:flex" aria-label="Principal">
+        <nav className="relative hidden items-center gap-1 lg:gap-1.5 lg:flex" aria-label="Principal">
           {items.map((item) => (
             <motion.div
               key={item.label}
@@ -123,7 +131,7 @@ const Navbar1 = ({
 
         {/* CTA Button */}
         <motion.div
-          className="relative hidden items-center gap-2 md:flex"
+          className="relative hidden items-center gap-2 lg:flex"
           initial={{ opacity: 0, x: 15 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.25, delay: 0.15 }}
@@ -148,7 +156,7 @@ const Navbar1 = ({
 
         {/* Botão Mobile */}
         <motion.button
-          className="relative flex items-center rounded-full p-2 text-slate-700 hover:bg-slate-100 md:hidden"
+          className="relative flex items-center rounded-full p-2 text-slate-700 hover:bg-slate-100 lg:hidden"
           onClick={toggleMenu}
           whileTap={{ scale: 0.9 }}
           aria-label="Abrir menu"
@@ -162,7 +170,7 @@ const Navbar1 = ({
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="fixed inset-0 z-50 bg-white/95 px-6 pt-24 backdrop-blur-3xl backdrop-saturate-200 md:hidden text-slate-900"
+            className="fixed inset-0 z-50 bg-white/95 px-6 pt-24 backdrop-blur-3xl backdrop-saturate-200 lg:hidden text-slate-900"
             role="dialog"
             aria-modal="true"
             initial={{ opacity: 0, x: "100%" }}

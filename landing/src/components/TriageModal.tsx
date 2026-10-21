@@ -50,6 +50,14 @@ export function TriageModal({
     }
   }, [isOpen]);
 
+  // Ao voltar do portal pelo botão Voltar, a página pode ser restaurada do cache
+  // com o botão ainda em "Abrindo o portal...": libera para tentar de novo
+  useEffect(() => {
+    const onPageShow = (e: PageTransitionEvent) => e.persisted && setIsSubmitting(false);
+    window.addEventListener("pageshow", onPageShow);
+    return () => window.removeEventListener("pageshow", onPageShow);
+  }, []);
+
   // Leva o foco para dentro do modal ao abrir e devolve ao botão de origem ao fechar
   useEffect(() => {
     if (!isOpen) return;

@@ -221,7 +221,7 @@ h1, h2, h3, h4 {
 .accessibility-menu button[aria-pressed="true"] { color: #b91e4c; background: #fff0f4; border-color: #ef8aa6; }
 .accessibility-toggle:focus-visible, .accessibility-menu button:focus-visible { outline: 3px solid #ffb7cb; outline-offset: 2px; }
 html.a11y-high-contrast .page-shell > section { filter: contrast(1.18); }
-html.a11y-underline-links .page-shell a { text-decoration: underline !important; text-decoration-thickness: 1.5px; text-underline-offset: 2px; }
+html.a11y-underline-links body a { text-decoration: underline !important; text-decoration-thickness: 1.5px; text-underline-offset: 2px; }
 @media (max-width: 600px) {
   .accessibility-widget { left: 12px; bottom: 12px; }
 }
