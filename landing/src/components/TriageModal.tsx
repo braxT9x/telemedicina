@@ -63,7 +63,11 @@ export function TriageModal({
     if (!isOpen) return;
     const trigger = document.activeElement as HTMLElement | null;
     modalRef.current?.querySelector<HTMLElement>("button:not([disabled])")?.focus();
-    return () => trigger?.focus();
+    return () => {
+      // Aberto pelo menu móvel, o botão de origem já sumiu: volta para o botão do menu
+      if (trigger?.isConnected) trigger.focus();
+      else document.querySelector<HTMLElement>('[aria-label="Abrir menu"]')?.focus();
+    };
   }, [isOpen]);
 
 
