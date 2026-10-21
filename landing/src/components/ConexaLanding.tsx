@@ -25,7 +25,7 @@ const featuredDoctors = [
   {
     name: 'Dra. Beatriz Santos',
     role: 'Clínica Geral • CRM/SP 198.412',
-    image: 'benefit-consultation.jpg',
+    image: 'benefit-protocol.jpg',
     specialty: 'Atendimento Imediato & Check-up',
     waitingTime: 'Plantão agora (~4 min)',
   },
@@ -160,8 +160,8 @@ export default function ConexaLanding() {
   // Escuta evento global de abertura de triagem vindo da navbar
   useEffect(() => {
     const handleOpenTriage = (e: any) => {
-      if (e.detail?.type) setTriageType(e.detail.type);
-      if (e.detail?.specialty) setTriageSpecialty(e.detail.specialty);
+      setTriageType(e.detail?.type ?? 'imediata');
+      setTriageSpecialty(e.detail?.specialty);
       setIsTriageOpen(true);
     };
     window.addEventListener('open-triage', handleOpenTriage);
@@ -389,7 +389,7 @@ export default function ConexaLanding() {
                     onClick={() => openTriage('agendada', doc.specialty)}
                     className="mt-3 w-full rounded-full bg-[#00D37B]/15 border border-[#00D37B]/40 py-2.5 text-xs font-bold text-[#007A4D] transition hover:bg-[#00D37B] hover:text-[#052E16] cursor-pointer"
                   >
-                    Consultar com este médico
+                    Agendar nesta especialidade
                   </button>
                 </div>
               </div>
